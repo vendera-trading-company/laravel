@@ -2,18 +2,58 @@
 
 namespace VenderaTradingCompany\App\Support;
 
-use VenderaTradingCompany\App\Services\IpService;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class Ip
 {
-    public function country(): string|null
+    public function resolve(string $ip = ''): array|null
     {
-        $data = IpService::resolve();
+        $cacheKey = 'vendera_trading_company_' . str_replace('.', '_', $ip);
+
+        if (Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
+        }
+
+        $response = null;
+
+        if (empty($ip)) {
+            $response = Http::get('https://api.vendera-trading.company/ip/resolve');
+        } else {
+            $response = Http::get('https://api.vendera-trading.company/ip/resolve', [
+                'ip' => $ip,
+            ]);
+        }
+
+        if (!$response->ok()) {
+            return null;
+        }
+
+        $status = $response->json('status');
+
+        if ($status != 'done') {
+            return null;
+        }
+
+        $data = $response->json('data');
+
+        if (empty($data)) {
+            return null;
+        }
+
+        Cache::put($cacheKey, $data, now()->addHour());
+
+        return $data;
+    }
+
+    public function country(string|null $default = null): string|null
+    {
+        $data = $this->resolve();
 
         $country = $data['country'];
 
         if (empty($country)) {
-            return null;
+            return $default;
         }
 
         return $country;

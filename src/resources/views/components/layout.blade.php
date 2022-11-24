@@ -28,7 +28,7 @@
 </head>
 
 <body
-    {{ $attributes->merge(['class' => ' text-black text-base bg-white antialiased no-scroll-bar scroll-smooth overflow-y-scroll']) }}>
+    {{ $attributes->merge(['class' => ' text-base antialiased no-scroll-bar scroll-smooth overflow-y-scroll']) }}>
     @livewireScripts
     @stack('scripts')
     {{ $slot }}
