@@ -4,7 +4,7 @@ namespace VenderaTradingCompany\App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Livewire\Livewire;
+use VenderaTradingCompany\App\Support\Ip;
 
 class VenderaTradingCompanyProvider extends ServiceProvider
 {
@@ -15,6 +15,10 @@ class VenderaTradingCompanyProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind('vendera-trading-company-location', function()
+        {
+            return new Ip();
+        });
     }
 
     /**
@@ -35,14 +39,6 @@ class VenderaTradingCompanyProvider extends ServiceProvider
 
     private function loadBladeDirectives()
     {
-        Blade::directive('account', function () {
-            return '<?php $account = \VenderaTradingCompany\App\Services\Account::get(); ?>';
-        });
-
-        Blade::directive('endaccount', function () {
-            return "<?php  ?>";
-        });
-
         Blade::directive('input', function ($expression) {
             return '<?php $input = $this->getInput(' . $expression . '); ?>';
         });

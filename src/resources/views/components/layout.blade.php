@@ -25,9 +25,6 @@
     @isset($head)
         {!! $head !!}
     @endisset
-    @foreach (IyiCode\App\Services\Layout::getHead() as $value)
-        {!! $value !!}
-    @endforeach
 </head>
 
 <body

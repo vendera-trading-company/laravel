@@ -20,6 +20,16 @@
       "VenderaTradingCompany\\": "src"
     }
   },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "VenderaTradingCompany\\App\\Providers\\VenderaTradingCompanyProvider"
+      ],
+      "aliases": {
+        "Location": "VenderaTradingCompany\\App\\Facades\\Ip"
+      }
+    }
+  },
   "config": {
     "sort-packages": true
   },
