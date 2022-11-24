@@ -7,23 +7,21 @@ use Illuminate\Support\Facades\Http;
 
 class Ip
 {
-    public function resolve(string $ip = ''): array|null
+    public function resolve(string|null $ip = null): array|null
     {
+        if (empty($ip)) {
+            $ip = request()->ip();
+        }
+
         $cacheKey = 'vendera_trading_company_' . str_replace('.', '_', $ip);
 
         if (Cache::has($cacheKey)) {
             return Cache::get($cacheKey);
         }
 
-        $response = null;
-
-        if (empty($ip)) {
-            $response = Http::get('https://api.vendera-trading.company/ip/resolve');
-        } else {
-            $response = Http::get('https://api.vendera-trading.company/ip/resolve', [
-                'ip' => $ip,
-            ]);
-        }
+        $response = Http::get('https://api.vendera-trading.company/ip/resolve', [
+            'ip' => $ip,
+        ]);
 
         if (!$response->ok()) {
             return null;
@@ -46,9 +44,9 @@ class Ip
         return $data;
     }
 
-    public function country(string|null $default = null): string|null
+    public function country(string|null $ip = null, string|null $default = null): string|null
     {
-        $data = $this->resolve();
+        $data = $this->resolve($ip);
 
         $country = $data['country'];
 
