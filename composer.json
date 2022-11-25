@@ -27,7 +27,8 @@
       ],
       "aliases": {
         "Ip": "VenderaTradingCompany\\App\\Facades\\Ip",
-        "SMS": "VenderaTradingCompany\\App\\Facades\\SMS"
+        "SMS": "VenderaTradingCompany\\App\\Facades\\SMS",
+        "Address": "VenderaTradingCompany\\App\\Facades\\Address"
       }
     }
   },

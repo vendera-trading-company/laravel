@@ -4,6 +4,7 @@ namespace VenderaTradingCompany\App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use VenderaTradingCompany\App\Support\Address;
 use VenderaTradingCompany\App\Support\Ip;
 use VenderaTradingCompany\App\Support\SMS;
 
@@ -24,6 +25,11 @@ class VenderaTradingCompanyProvider extends ServiceProvider
         $this->app->bind('vendera-trading-company-sms', function()
         {
             return new SMS();
+        });
+
+        $this->app->bind('vendera-trading-company-address', function()
+        {
+            return new Address();
         });
     }
 
