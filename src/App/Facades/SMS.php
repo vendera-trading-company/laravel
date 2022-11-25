@@ -4,7 +4,7 @@ namespace VenderaTradingCompany\App\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Ip extends Facade
+class SMS extends Facade
 {
 
     /**
@@ -12,5 +12,5 @@ class Ip extends Facade
     *
     * @return string
     */
-    protected static function getFacadeAccessor() { return 'vendera-trading-company-ip'; }
+    protected static function getFacadeAccessor() { return 'vendera-trading-company-sms'; }
 }

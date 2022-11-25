@@ -26,7 +26,8 @@
         "VenderaTradingCompany\\App\\Providers\\VenderaTradingCompanyProvider"
       ],
       "aliases": {
-        "Location": "VenderaTradingCompany\\App\\Facades\\Ip"
+        "Ip": "VenderaTradingCompany\\App\\Facades\\Ip",
+        "SMS": "VenderaTradingCompany\\App\\Facades\\SMS"
       }
     }
   },
