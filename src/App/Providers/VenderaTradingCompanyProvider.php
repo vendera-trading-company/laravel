@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use VenderaTradingCompany\App\Support\Address;
 use VenderaTradingCompany\App\Support\Ip;
+use VenderaTradingCompany\App\Support\Payment;
 use VenderaTradingCompany\App\Support\SMS;
 
 class VenderaTradingCompanyProvider extends ServiceProvider
@@ -17,19 +18,20 @@ class VenderaTradingCompanyProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('vendera-trading-company-ip', function()
-        {
+        $this->app->bind('vendera-trading-company-ip', function () {
             return new Ip();
         });
 
-        $this->app->bind('vendera-trading-company-sms', function()
-        {
+        $this->app->bind('vendera-trading-company-sms', function () {
             return new SMS();
         });
 
-        $this->app->bind('vendera-trading-company-address', function()
-        {
+        $this->app->bind('vendera-trading-company-address', function () {
             return new Address();
+        });
+
+        $this->app->bind('vendera-trading-company-payment', function () {
+            return new Payment();
         });
     }
 
