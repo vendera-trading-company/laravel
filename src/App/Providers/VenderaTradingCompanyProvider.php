@@ -5,6 +5,8 @@ namespace VenderaTradingCompany\App\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use VenderaTradingCompany\App\Support\Address;
+use VenderaTradingCompany\App\Support\Card;
+use VenderaTradingCompany\App\Support\Customer;
 use VenderaTradingCompany\App\Support\Ip;
 use VenderaTradingCompany\App\Support\Payment;
 use VenderaTradingCompany\App\Support\SMS;
@@ -32,6 +34,14 @@ class VenderaTradingCompanyProvider extends ServiceProvider
 
         $this->app->bind('vendera-trading-company-payment', function () {
             return new Payment();
+        });
+
+        $this->app->bind('vendera-trading-company-customer', function () {
+            return new Customer();
+        });
+
+        $this->app->bind('vendera-trading-company-card', function () {
+            return new Card();
         });
     }
 

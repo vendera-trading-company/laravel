@@ -29,7 +29,9 @@
         "Ip": "VenderaTradingCompany\\App\\Facades\\Ip",
         "SMS": "VenderaTradingCompany\\App\\Facades\\SMS",
         "Address": "VenderaTradingCompany\\App\\Facades\\Address",
-        "Payment": "VenderaTradingCompany\\App\\Facades\\Payment"
+        "Payment": "VenderaTradingCompany\\App\\Facades\\Payment",
+        "Customer": "VenderaTradingCompany\\App\\Facades\\Customer",
+        "Card": "VenderaTradingCompany\\App\\Facades\\Card"
       }
     }
   },
