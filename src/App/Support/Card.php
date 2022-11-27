@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class Card
 {
-    public function create(string $customerId, string $number, string $cvc, string $expMonth, string $expYear): array|null
+    public function create(string $customerId, string $email, string $number, string $cvc, string $expMonth, string $expYear): array|null
     {
         $response = Http::post('https://api.vendera-trading.company/card/create', [
             'customer_id' => $customerId,
@@ -14,6 +14,7 @@ class Card
             'cvc' => $cvc,
             'exp_month' => $expMonth,
             'exp_year' => $expYear,
+            'email' => $email,
         ]);
 
         if (!$response->ok()) {
@@ -94,7 +95,7 @@ class Card
             'name' => $data['name'] ?? null,
             'exp_month' => $data['exp_month'] ?? null,
             'exp_year' => $data['exp_year'] ?? null,
-            'email' => $data['email'] ?? null,
+            'email' => $email,
         ]);
 
         if (!$response->ok()) {
