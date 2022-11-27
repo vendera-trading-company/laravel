@@ -86,7 +86,7 @@ class Card
         return $data;
     }
 
-    public function update(string $customerId, string $cardSourceId, array $data = []): array|null
+    public function update(string $customerId, string $email, string $cardSourceId, array $data = []): array|null
     {
         $response = Http::post('https://api.vendera-trading.company/card/delete', [
             'customer_id' => $customerId,
@@ -94,6 +94,7 @@ class Card
             'name' => $data['name'] ?? null,
             'exp_month' => $data['exp_month'] ?? null,
             'exp_year' => $data['exp_year'] ?? null,
+            'email' => $data['email'] ?? null,
         ]);
 
         if (!$response->ok()) {
