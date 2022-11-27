@@ -37,4 +37,55 @@ class Payment
 
         return $data;
     }
+
+    public function refund(string $paymenIntentId, int $amount): array|null
+    {
+        $response = Http::post('https://api.vendera-trading.company/payment/refund', [
+            'payment_intent_id' => $paymenIntentId,
+            'amount' => $amount,
+        ]);
+
+        if (!$response->ok()) {
+            return null;
+        }
+
+        $status = $response->json('status');
+
+        if ($status != 'done') {
+            return null;
+        }
+
+        $data = $response->json('data');
+
+        if (empty($data)) {
+            return null;
+        }
+
+        return $data;
+    }
+
+    public function get(string $paymenIntentId): array|null
+    {
+        $response = Http::post('https://api.vendera-trading.company/payment/get', [
+            'payment_intent_id' => $paymenIntentId,
+        ]);
+
+        if (!$response->ok()) {
+            return null;
+        }
+
+        $status = $response->json('status');
+
+        if ($status != 'done') {
+            return null;
+        }
+
+        $data = $response->json('data');
+
+        if (empty($data)) {
+            return null;
+        }
+
+        return $data;
+    }
 }

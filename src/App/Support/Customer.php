@@ -33,10 +33,37 @@ class Customer
         return $data;
     }
 
-    public function get(string $email): array|null
+    public function update(string $customerId, array $data): array|null
+    {
+        $response = Http::post('https://api.vendera-trading.company/customer/update', [
+            'customer_id' => $customerId,
+            'email' => $data['email'] ?? null,
+            'phone' => $data['phone'] ?? null,
+        ]);
+
+        if (!$response->ok()) {
+            return null;
+        }
+
+        $status = $response->json('status');
+
+        if ($status != 'done') {
+            return null;
+        }
+
+        $data = $response->json('data');
+
+        if (empty($data)) {
+            return null;
+        }
+
+        return $data;
+    }
+
+    public function get(string $identifier): array|null
     {
         $response = Http::post('https://api.vendera-trading.company/customer/get', [
-            'email' => $email,
+            'email' => $identifier,
         ]);
 
         if (!$response->ok()) {
