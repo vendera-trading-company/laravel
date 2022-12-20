@@ -48,7 +48,7 @@ class Ip
     {
         $data = $this->resolve($ip);
 
-        $country = $data['country'];
+        $country = $data['country'] ?? $default;
 
         if (empty($country)) {
             return $default;
